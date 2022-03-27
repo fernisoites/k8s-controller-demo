@@ -7,7 +7,9 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+	userInput := r.URL.Path[1:]
+	log.Printf("Endpoint requested by user: %s", userInput)
+	fmt.Fprintf(w, "Hi there, I love %s!", userInput)
 }
 
 func main() {

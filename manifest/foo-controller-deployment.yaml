@@ -2,22 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: default
-  name: helloworld
+  name: foo-controller
   labels:
-    app: helloworld
+    app: foo-controller
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: helloworld
+      app: foo-controller
   template:
     metadata:
       labels:
-        app: helloworld
+        app: foo-controller
     spec:
+      serviceAccountName: foo-controller
       containers:
-      - name: helloworld
-        image: localhost:5001/demo/helloworld:latest
+      - name: foo-controller
+        image: localhost:5001/demo/foo-controller:latest
         imagePullPolicy: Always
         ports:
         - name: http

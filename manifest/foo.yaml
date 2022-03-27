@@ -1,0 +1,7 @@
+apiVersion: foo.fernisoites.io/v1
+kind: Foo
+metadata:
+  namespace: default
+  name: foo1
+replicas: 1
+status: "Created"

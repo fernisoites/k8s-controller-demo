@@ -1,0 +1,36 @@
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: foo-controller
+  namespace: default
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: foo-controller
+rules:
+- apiGroups:
+    - "foo.fernisoites.io"
+  resources:
+    - "*"
+  verbs:
+    - "get"
+    - "watch"
+    - "list"
+    - "patch"
+    - "create"
+    - "update"
+    - "delete"
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: foo-controller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: foo-controller
+subjects:
+- kind: ServiceAccount
+  name: foo-controller
+  namespace: default
