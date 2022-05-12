@@ -4,6 +4,14 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+if [[ "${1:-}" == "--create-cluster" ]]; then
+  gcloud beta container \
+    --project "chao-play-project" \
+    clusters create "knative-demo" \
+    --zone "us-central1-c" \
+    --no-enable-basic-auth
+fi
+
 # Make sure to install on demo cluster
 CONTEXT="gke_chao-play-project_us-central1-c_knative-demo"
 
